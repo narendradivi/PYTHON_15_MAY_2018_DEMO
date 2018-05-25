@@ -1,6 +1,12 @@
 class Product:
+    taxper = 15  # static or class attribute
+
+    @staticmethod
+    def settaxper(newtaxper):
+        Product.taxper = newtaxper
+
     def __init__(self, name, price=None):
-        self.__name = name
+        self.__name = name  # object or instance attributes
         self.__price = price
 
     def __str__(self):
@@ -11,16 +17,15 @@ class Product:
 
     @property
     def netprice(self):
-        return self.__price * 1.15
+        return (self.__price * Product.taxper / 100) + self.__price
 
     @netprice.setter
-    def netprice(self,value):
+    def netprice(self, value):
         pass
 
 
+Product.settaxper(17)
 p1 = Product("iPhone X", 80000)  # Create object
-print (p1.netprice)
-p1.netprice = 95000
+p2 = Product("Samsung S9", 70000)  # Create object
 
-
-
+print(p1.netprice)
