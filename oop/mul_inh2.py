@@ -9,12 +9,12 @@ class B(A):
     #     print("In B")
 
 
-class C:
+class C(A):
     def print(self):
         print("In C")
 
 
-class D(B,C):
+class D(B,A,C):
     pass
 
 
